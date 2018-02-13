@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebAPIAuthentication.Controllers
 {
@@ -11,20 +16,21 @@ namespace WebAPIAuthentication.Controllers
     [Route("api/Sample")]
     public class SampleController : Controller
     {
+        private IConfiguration _config;
+        private string UserId;
+        public SampleController(IConfiguration config)
+        {
+          
+            _config = config;
+        }
         // GET: api/Sample
         [HttpGet]
-        public Result Get()
+        public ActionResult Get()
         {
 
-            var data = new List<object>
-            {
-                new User() { FirstName = "A" },
-                new User() { FirstName = "B" },
-                new User() { FirstName = "C" },
-                new User() { FirstName = "D" }
-            };
+            UserId = new UserDataProvider().GetUserID(HttpContext);
+            return Ok(BuildToken(new User()));
 
-            return new Result(){Data = data,StatusCode = 101,StatusMessage = "OK",version = "1.0"};
         }
 
         // GET: api/Sample/5
@@ -33,23 +39,36 @@ namespace WebAPIAuthentication.Controllers
         {
             return "value";
         }
-        
+
         // POST: api/Sample
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
-        
+
         // PUT: api/Sample/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
-        
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        private string BuildToken(User _user)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var testclaims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(ClaimTypes.Sid,"1"),
+ };
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Issuer"], testclaims, expires: DateTime.Now.AddMinutes(30), signingCredentials: creds);
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

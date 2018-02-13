@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIAuthentication", "WebAPIAuthentication\WebAPIAuthentication.csproj", "{E83B2991-0015-415A-940C-E2EF3A116C64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIAuthentication", "WebAPIAuthentication\WebAPIAuthentication.csproj", "{E83B2991-0015-415A-940C-E2EF3A116C64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModels", "DataModels\DataModels.csproj", "{AFEA4553-0C0C-48CA-A6C8-51DBAD4A15AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{3C813294-9C4F-4D06-B6DA-B56C3BDA0B4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{E83B2991-0015-415A-940C-E2EF3A116C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E83B2991-0015-415A-940C-E2EF3A116C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E83B2991-0015-415A-940C-E2EF3A116C64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFEA4553-0C0C-48CA-A6C8-51DBAD4A15AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFEA4553-0C0C-48CA-A6C8-51DBAD4A15AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFEA4553-0C0C-48CA-A6C8-51DBAD4A15AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFEA4553-0C0C-48CA-A6C8-51DBAD4A15AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C813294-9C4F-4D06-B6DA-B56C3BDA0B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C813294-9C4F-4D06-B6DA-B56C3BDA0B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C813294-9C4F-4D06-B6DA-B56C3BDA0B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C813294-9C4F-4D06-B6DA-B56C3BDA0B4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
